@@ -11,8 +11,8 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-    
+    <link href="https://fonts.bunny.net/css?family=Quicksand:400,500,700|Pacifico" rel="stylesheet">
+
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
@@ -21,7 +21,7 @@
 </head>
 <body class="d-flex flex-column min-vh-100">
     <div id="app" class="d-flex flex-column flex-grow-1">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar site-navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -33,9 +33,6 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}">Home</a>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('blog.*') || request()->routeIs('posts.*') ? 'active' : '' }}" href="{{ route('blog.index') }}">Blog</a>
                         </li>
@@ -58,7 +55,7 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     {{ Auth::user()->name }}
                                 </a>
 
@@ -85,7 +82,7 @@
         </main>
 
         <!-- Footer -->
-        <footer class="bg-dark text-white mt-auto">
+        <footer class="site-footer text-white mt-auto">
             <div class="container py-5">
                 <div class="row">
                     <div class="col-md-4 mb-4 mb-md-0">
@@ -124,9 +121,6 @@
                 <div class="row">
                     <div class="col-md-6 text-center text-md-start mb-2 mb-md-0">
                         <p class="text-muted mb-0">&copy; {{ date('Y') }} {{ config('app.name', 'Laravel Blog') }}. All rights reserved.</p>
-                    </div>
-                    <div class="col-md-6 text-center text-md-end">
-                        <p class="text-muted mb-0">Built with <i class="bi bi-heart-fill text-danger"></i> using Laravel</p>
                     </div>
                 </div>
             </div>
