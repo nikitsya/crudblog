@@ -11,7 +11,7 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.bunny.net/css?family=Quicksand:400,500,700|Pacifico" rel="stylesheet">
     
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -21,7 +21,7 @@
 </head>
 <body class="d-flex flex-column min-vh-100">
     <div id="app" class="d-flex flex-column flex-grow-1">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar site-navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -85,7 +85,7 @@
         </main>
 
         <!-- Footer -->
-        <footer class="bg-dark text-white mt-auto">
+        <footer class="site-footer text-white mt-auto">
             <div class="container py-5">
                 <div class="row">
                     <div class="col-md-4 mb-4 mb-md-0">

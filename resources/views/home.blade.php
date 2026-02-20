@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- Hero Section -->
-<div class="bg-primary text-white py-5" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+<div class="home-hero text-white py-5">
     <div class="container py-5">
         <div class="row align-items-center">
             <div class="col-lg-8 mx-auto text-center">
@@ -83,7 +83,7 @@
 </div>
 
 <!-- Features Section -->
-<div class="bg-light py-5">
+<div class="blush-panel py-5">
     <div class="container py-5">
         <div class="row align-items-center">
             <div class="col-lg-6 mb-4 mb-lg-0">
@@ -139,7 +139,7 @@
 </div>
 
 <!-- Statistics Section -->
-<div class="bg-dark text-white py-5">
+<div class="pink-stats text-white py-5">
     <div class="container py-4">
         <div class="row text-center">
             <div class="col-md-3 mb-4 mb-md-0">
@@ -162,4 +162,3 @@
     </div>
 </div>
 @endsection
-
