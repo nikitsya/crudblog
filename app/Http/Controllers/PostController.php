@@ -22,7 +22,10 @@ class PostController extends Controller
      */
     public function index(): View
     {
-        $posts = Post::with('user')->latest()->paginate(10);
+        $posts = Post::with('user')
+            ->withCount('comments')
+            ->latest()
+            ->paginate(10);
 
         return view('posts.index', compact('posts'));
     }

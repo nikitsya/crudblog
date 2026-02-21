@@ -38,6 +38,9 @@
                         <p class="text-muted small">
                             By {{ $post->user->name }} | {{ $post->created_at->format('M d, Y') }}
                         </p>
+                        <p class="text-muted small mb-2">
+                            <i class="bi bi-chat-heart me-1"></i>{{ $post->comments_count }} {{ Str::plural('comment', $post->comments_count) }}
+                        </p>
                         <p class="card-text">{{ Str::limit($post->description, 200) }}</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <a href="{{ route('posts.show', $post) }}" class="btn btn-sm btn-outline-primary">Read More</a>
