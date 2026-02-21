@@ -26,8 +26,8 @@
 <div class="container py-5 my-5">
     <div class="row text-center mb-5">
         <div class="col-lg-8 mx-auto">
-            <h2 class="display-5 fw-bold mb-3">Why Choose Our Platform?</h2>
-            <p class="lead text-muted">Everything you need to share your coding journey with the world</p>
+            <h2 class="display-5 fw-bold mb-3">Explore Fresh Blog Content</h2>
+            <p class="lead text-muted">Read tutorials, tips, and real development stories from our blog.</p>
         </div>
     </div>
     
@@ -36,14 +36,14 @@
             <div class="card h-100 border-0 shadow-sm">
                 <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=500&fit=crop" 
                      class="card-img-top" 
-                     alt="Modern Development"
+                     alt="Practical Tutorials"
                      style="height: 250px; object-fit: cover;">
                 <div class="card-body text-center p-4">
                     <div class="mb-3">
                         <i class="bi bi-code-slash fs-1 text-primary"></i>
                     </div>
-                    <h3 class="h4 mb-3">Modern Development</h3>
-                    <p class="text-muted">Built with Laravel 10 and Bootstrap 5, featuring the latest web development practices and tools for a seamless experience.</p>
+                    <h3 class="h4 mb-3">Practical Tutorials</h3>
+                    <p class="text-muted">Step-by-step guides and code examples to help you build real Laravel projects with confidence.</p>
                 </div>
             </div>
         </div>
@@ -52,14 +52,14 @@
             <div class="card h-100 border-0 shadow-sm">
                 <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=500&fit=crop" 
                      class="card-img-top" 
-                     alt="Community Driven"
+                     alt="Developer Community"
                      style="height: 250px; object-fit: cover;">
                 <div class="card-body text-center p-4">
                     <div class="mb-3">
                         <i class="bi bi-people fs-1 text-primary"></i>
                     </div>
-                    <h3 class="h4 mb-3">Community Driven</h3>
-                    <p class="text-muted">Connect with fellow developers, share knowledge, and grow together in a supportive community of learners and experts.</p>
+                    <h3 class="h4 mb-3">Developer Community</h3>
+                    <p class="text-muted">Read insights from other developers, share ideas, and learn from real-world coding experiences.</p>
                 </div>
             </div>
         </div>
@@ -68,14 +68,14 @@
             <div class="card h-100 border-0 shadow-sm">
                 <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=500&fit=crop" 
                      class="card-img-top" 
-                     alt="Easy to Use"
+                     alt="Quick Publishing"
                      style="height: 250px; object-fit: cover;">
                 <div class="card-body text-center p-4">
                     <div class="mb-3">
                         <i class="bi bi-lightning-charge fs-1 text-primary"></i>
                     </div>
-                    <h3 class="h4 mb-3">Easy to Use</h3>
-                    <p class="text-muted">Intuitive interface with powerful features. Start writing and publishing your blog posts in minutes, not hours.</p>
+                    <h3 class="h4 mb-3">Quick Publishing</h3>
+                    <p class="text-muted">Create, edit, and publish your posts quickly with a clean workflow designed for everyday writing.</p>
                 </div>
             </div>
         </div>
