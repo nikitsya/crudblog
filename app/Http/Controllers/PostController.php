@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class PostController extends Controller
@@ -24,6 +25,7 @@ class PostController extends Controller
     public function index(): View
     {
         $selectedCategory = request('category');
+        $searchTerm = trim((string) request('search'));
 
         $postsQuery = Post::with(['user', 'category'])
             ->withCount('comments')
@@ -35,10 +37,21 @@ class PostController extends Controller
             });
         }
 
+        if ($searchTerm !== '') {
+            if (DB::connection()->getDriverName() === 'mysql') {
+                $postsQuery->whereFullText(['title', 'description'], $searchTerm);
+            } else {
+                $postsQuery->where(function ($query) use ($searchTerm) {
+                    $query->where('title', 'like', '%' . $searchTerm . '%')
+                        ->orWhere('description', 'like', '%' . $searchTerm . '%');
+                });
+            }
+        }
+
         $posts = $postsQuery->paginate(10)->withQueryString();
         $categories = Category::orderBy('name')->get();
 
-        return view('posts.index', compact('posts', 'categories', 'selectedCategory'));
+        return view('posts.index', compact('posts', 'categories', 'selectedCategory', 'searchTerm'));
     }
 
     /**

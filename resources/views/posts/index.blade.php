@@ -16,7 +16,18 @@
 
             <form action="{{ route('blog.index') }}" method="GET" class="card card-body mb-4">
                 <div class="row g-2 align-items-end">
-                    <div class="col-md-8">
+                    <div class="col-md-5">
+                        <label for="search" class="form-label mb-1">Search posts</label>
+                        <input
+                            id="search"
+                            type="text"
+                            name="search"
+                            class="form-control"
+                            value="{{ $searchTerm }}"
+                            placeholder="Search by title or description"
+                        >
+                    </div>
+                    <div class="col-md-4">
                         <label for="category" class="form-label mb-1">Filter by category</label>
                         <select id="category" name="category" class="form-select">
                             <option value="">All categories</option>
@@ -27,7 +38,7 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="col-md-4 d-flex gap-2">
+                    <div class="col-md-3 d-flex gap-2">
                         <button type="submit" class="btn btn-primary w-100">Apply Filter</button>
                         <a href="{{ route('blog.index') }}" class="btn btn-outline-secondary w-100">Reset</a>
                     </div>
@@ -84,7 +95,16 @@
                 </div>
             @empty
                 <div class="alert alert-info">
-                    <p class="mb-0">No posts found. @auth <a href="{{ route('posts.create') }}">Create the first post!</a> @endauth</p>
+                    <p class="mb-0">
+                        No posts found
+                        @if($searchTerm !== '')
+                            for "{{ $searchTerm }}"
+                        @endif.
+
+                        @auth
+                            <a href="{{ route('posts.create') }}">Create the first post!</a>
+                        @endauth
+                    </p>
                 </div>
             @endforelse
 
