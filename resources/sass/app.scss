@@ -124,6 +124,19 @@ h6 {
     border-color: #ff6fae;
 }
 
+.back-to-posts-btn {
+    color: #7d2758;
+    border-color: #c86196;
+    background-color: #ffe2f0;
+}
+
+.back-to-posts-btn:hover,
+.back-to-posts-btn:focus {
+    color: #fff;
+    background-color: #c84f8b;
+    border-color: #c84f8b;
+}
+
 .card {
     border: 1px solid rgba(255, 176, 214, 0.45);
     box-shadow: 0 12px 30px rgba(204, 95, 153, 0.12);

@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="mb-3">
-                <a href="{{ route('posts.index') }}" class="btn btn-sm btn-outline-secondary">
+                <a href="{{ route('posts.index') }}" class="btn btn-sm btn-outline-secondary back-to-posts-btn">
                     &larr; Back to Posts
                 </a>
             </div>
