@@ -182,3 +182,53 @@ h6 {
     background-color: #ff6fae;
     border-color: #ff6fae;
 }
+
+.blog-filter-card {
+    border-radius: 1.5rem;
+    background: linear-gradient(180deg, #fff8fc 0%, #fff3f9 100%);
+}
+
+.blog-filter-card .form-label {
+    color: #7d2758;
+    font-weight: 700;
+}
+
+.blog-filter-card .form-control,
+.blog-filter-card .form-select {
+    min-height: 48px;
+    border-color: #f3c1dc;
+    background-color: #fff;
+}
+
+.blog-filter-card .form-control:focus,
+.blog-filter-card .form-select:focus {
+    border-color: #ff6fae;
+    box-shadow: 0 0 0 0.2rem rgba(255, 111, 174, 0.15);
+}
+
+.blog-filter-actions .btn {
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.blog-filter-submit {
+    box-shadow: 0 6px 14px rgba(255, 95, 165, 0.22);
+}
+
+.blog-filter-reset {
+    color: #b13b79;
+    border-color: #e999c3;
+    background-color: #fff;
+}
+
+.blog-filter-reset:hover,
+.blog-filter-reset:focus {
+    color: #fff;
+    border-color: #ff6fae;
+    background-color: #ff6fae;
+}

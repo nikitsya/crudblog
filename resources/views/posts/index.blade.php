@@ -14,9 +14,9 @@
                 @endauth
             </div>
 
-            <form action="{{ route('blog.index') }}" method="GET" class="card card-body mb-4">
-                <div class="row g-2 align-items-end">
-                    <div class="col-md-5">
+            <form action="{{ route('blog.index') }}" method="GET" class="card card-body mb-4 blog-filter-card">
+                <div class="row g-3 align-items-end">
+                    <div class="col-lg-5 col-md-12">
                         <label for="search" class="form-label mb-1">Search posts</label>
                         <input
                             id="search"
@@ -27,7 +27,7 @@
                             placeholder="Search by title or description"
                         >
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-lg-4 col-md-7">
                         <label for="category" class="form-label mb-1">Filter by category</label>
                         <select id="category" name="category" class="form-select">
                             <option value="">All categories</option>
@@ -38,9 +38,9 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="col-md-3 d-flex gap-2">
-                        <button type="submit" class="btn btn-primary w-100">Apply Filter</button>
-                        <a href="{{ route('blog.index') }}" class="btn btn-outline-secondary w-100">Reset</a>
+                    <div class="col-lg-3 col-md-5 d-flex gap-2 blog-filter-actions">
+                        <button type="submit" class="btn btn-primary w-100 blog-filter-submit">Apply</button>
+                        <a href="{{ route('blog.index') }}" class="btn btn-outline-primary w-100 blog-filter-reset">Reset</a>
                     </div>
                 </div>
             </form>
