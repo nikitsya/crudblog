@@ -56,7 +56,7 @@ class LoginController extends Controller
             $request->session()->put('admin_id', $admin->id);
             $request->session()->put('admin_name', $admin->name);
 
-            return redirect()->intended($this->redirectPath());
+            return redirect()->intended(route('admin.dashboard'));
         }
 
         return $this->laravelLogin($request);

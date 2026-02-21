@@ -17,6 +17,10 @@ class RedirectIfAuthenticated
      */
     public function handle(Request $request, Closure $next, string ...$guards): Response
     {
+        if ($request->session()->has('admin_id')) {
+            return redirect()->route('admin.dashboard');
+        }
+
         $guards = empty($guards) ? [null] : $guards;
 
         foreach ($guards as $guard) {
