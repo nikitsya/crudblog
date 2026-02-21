@@ -26,6 +26,26 @@
                         </div>
 
                         <div class="mb-3">
+                            <label for="category_id" class="form-label">Category</label>
+                            <select
+                                id="category_id"
+                                name="category_id"
+                                class="form-select @error('category_id') is-invalid @enderror"
+                                required
+                            >
+                                <option value="" disabled {{ old('category_id') ? '' : 'selected' }}>Select a category</option>
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                                        {{ $category->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('category_id')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
                             <label for="description" class="form-label">Description</label>
                             <textarea class="form-control @error('description') is-invalid @enderror" 
                                       id="description" 

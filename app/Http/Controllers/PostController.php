@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -22,12 +23,22 @@ class PostController extends Controller
      */
     public function index(): View
     {
-        $posts = Post::with('user')
-            ->withCount('comments')
-            ->latest()
-            ->paginate(10);
+        $selectedCategory = request('category');
 
-        return view('posts.index', compact('posts'));
+        $postsQuery = Post::with(['user', 'category'])
+            ->withCount('comments')
+            ->latest();
+
+        if ($selectedCategory) {
+            $postsQuery->whereHas('category', function ($query) use ($selectedCategory) {
+                $query->where('slug', $selectedCategory);
+            });
+        }
+
+        $posts = $postsQuery->paginate(10)->withQueryString();
+        $categories = Category::orderBy('name')->get();
+
+        return view('posts.index', compact('posts', 'categories', 'selectedCategory'));
     }
 
     /**
@@ -35,7 +46,9 @@ class PostController extends Controller
      */
     public function create(): View
     {
-        return view('posts.create');
+        $categories = Category::orderBy('name')->get();
+
+        return view('posts.create', compact('categories'));
     }
 
     /**
@@ -45,6 +58,7 @@ class PostController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
+            'category_id' => 'required|exists:categories,id',
             'description' => 'required|string',
             'image_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
@@ -66,7 +80,7 @@ class PostController extends Controller
      */
     public function show(Post $post): View
     {
-        $post->load(['user', 'comments.user']);
+        $post->load(['user', 'category', 'comments.user']);
 
         return view('posts.show', compact('post'));
     }
@@ -78,7 +92,9 @@ class PostController extends Controller
     {
         $this->authorize('update', $post);
 
-        return view('posts.edit', compact('post'));
+        $categories = Category::orderBy('name')->get();
+
+        return view('posts.edit', compact('post', 'categories'));
     }
 
     /**
@@ -90,6 +106,7 @@ class PostController extends Controller
 
         $validated = $request->validate([
             'title' => 'required|string|max:255',
+            'category_id' => 'required|exists:categories,id',
             'description' => 'required|string',
             'image_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);

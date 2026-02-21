@@ -24,6 +24,7 @@ class Post extends Model
         'description',
         'image_path',
         'user_id',
+        'category_id',
     ];
 
     /**
@@ -32,6 +33,14 @@ class Post extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the category for the post.
+     */
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
     }
 
     /**

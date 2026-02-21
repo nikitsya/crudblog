@@ -29,6 +29,7 @@
                             <small>
                                 By <strong>{{ $post->user->name }}</strong> | 
                                 {{ $post->created_at->format('F j, Y \a\t g:i a') }}
+                                <span class="ms-2">| Category: {{ $post->category?->name ?? 'Uncategorized' }}</span>
                                 @if($post->created_at != $post->updated_at)
                                     <span class="ms-2">(Updated: {{ $post->updated_at->format('M d, Y') }})</span>
                                 @endif

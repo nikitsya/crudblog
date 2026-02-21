@@ -14,6 +14,26 @@
                 @endauth
             </div>
 
+            <form action="{{ route('blog.index') }}" method="GET" class="card card-body mb-4">
+                <div class="row g-2 align-items-end">
+                    <div class="col-md-8">
+                        <label for="category" class="form-label mb-1">Filter by category</label>
+                        <select id="category" name="category" class="form-select">
+                            <option value="">All categories</option>
+                            @foreach($categories as $category)
+                                <option value="{{ $category->slug }}" {{ $selectedCategory === $category->slug ? 'selected' : '' }}>
+                                    {{ $category->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-md-4 d-flex gap-2">
+                        <button type="submit" class="btn btn-primary w-100">Apply Filter</button>
+                        <a href="{{ route('blog.index') }}" class="btn btn-outline-secondary w-100">Reset</a>
+                    </div>
+                </div>
+            </form>
+
             @if(session('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     {{ session('success') }}
@@ -37,6 +57,11 @@
                         </h3>
                         <p class="text-muted small">
                             By {{ $post->user->name }} | {{ $post->created_at->format('M d, Y') }}
+                        </p>
+                        <p class="small mb-2">
+                            <span class="badge rounded-pill text-bg-light border">
+                                Category: {{ $post->category?->name ?? 'Uncategorized' }}
+                            </span>
                         </p>
                         <p class="text-muted small mb-2">
                             <i class="bi bi-chat-heart me-1"></i>{{ $post->comments_count }} {{ Str::plural('comment', $post->comments_count) }}
