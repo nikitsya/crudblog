@@ -49,6 +49,51 @@
                     <div class="card-text">
                         {!! nl2br(e($post->description)) !!}
                     </div>
+
+                    <hr class="my-4">
+
+                    <div>
+                        <h4 class="mb-3">Comments ({{ $post->comments->count() }})</h4>
+
+                        @auth
+                            <form action="{{ route('posts.comments.store', $post) }}" method="POST" class="mb-4">
+                                @csrf
+                                <div class="mb-2">
+                                    <label for="content" class="form-label">Add a comment</label>
+                                    <textarea
+                                        id="content"
+                                        name="content"
+                                        rows="3"
+                                        class="form-control @error('content') is-invalid @enderror"
+                                        placeholder="Write your comment..."
+                                        required
+                                    >{{ old('content') }}</textarea>
+                                    @error('content')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <button type="submit" class="btn btn-sm btn-primary">Post Comment</button>
+                            </form>
+                        @else
+                            <p class="text-muted mb-4">
+                                <a href="{{ route('login') }}">Log in</a> to add a comment.
+                            </p>
+                        @endauth
+
+                        @forelse($post->comments as $comment)
+                            <div class="border rounded-3 p-3 mb-3 bg-white">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <strong>{{ $comment->user->name }}</strong>
+                                    <small class="text-muted">{{ $comment->created_at->format('M d, Y \\a\\t g:i a') }}</small>
+                                </div>
+                                <p class="mb-0">{!! nl2br(e($comment->content)) !!}</p>
+                            </div>
+                        @empty
+                            <div class="alert alert-info mb-0">
+                                No comments yet. Be the first to comment.
+                            </div>
+                        @endforelse
+                    </div>
                 </div>
             </div>
         </div>

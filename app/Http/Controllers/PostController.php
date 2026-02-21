@@ -63,6 +63,8 @@ class PostController extends Controller
      */
     public function show(Post $post): View
     {
+        $post->load(['user', 'comments.user']);
+
         return view('posts.show', compact('post'));
     }
 
@@ -111,4 +113,3 @@ class PostController extends Controller
         return redirect()->route('posts.index')->with('success', 'Post deleted successfully!');
     }
 }
-

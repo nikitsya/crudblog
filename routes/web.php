@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,8 @@ Route::get('/blog', [PostController::class, 'index'])->name('blog.index');
 
 // Blog routes
 Route::resource('posts', PostController::class);
+Route::post('/posts/{post}/comments', [CommentController::class, 'store'])
+    ->name('posts.comments.store');
 
 Auth::routes();
 
