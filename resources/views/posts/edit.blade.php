@@ -90,3 +90,26 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor.create(document.querySelector('#description'), {
+            toolbar: [
+                'heading', '|',
+                'bold', 'italic', 'link', '|',
+                'bulletedList', 'numberedList', '|',
+                'undo', 'redo'
+            ]
+        }).then((editor) => {
+            const form = document.querySelector('form[action="{{ route('posts.update', $post) }}"]');
+            if (form) {
+                form.addEventListener('submit', () => {
+                    document.querySelector('#description').value = editor.getData();
+                });
+            }
+        }).catch((error) => {
+            console.error(error);
+        });
+    </script>
+@endpush

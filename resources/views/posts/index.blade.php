@@ -77,7 +77,7 @@
                         <p class="text-muted small mb-2">
                             <i class="bi bi-chat-heart me-1"></i>{{ $post->comments_count }} {{ Str::plural('comment', $post->comments_count) }}
                         </p>
-                        <p class="card-text">{{ Str::limit($post->description, 200) }}</p>
+                        <p class="card-text">{{ Str::limit(strip_tags($post->description), 200) }}</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <a href="{{ route('posts.show', $post) }}" class="btn btn-sm btn-outline-primary">Read More</a>
                             @can('update', $post)

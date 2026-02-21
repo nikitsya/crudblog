@@ -47,8 +47,8 @@
                         @endcan
                     </div>
 
-                    <div class="card-text">
-                        {!! nl2br(e($post->description)) !!}
+                    <div class="card-text post-content">
+                        {!! $post->description !!}
                     </div>
 
                     <hr class="my-4">
