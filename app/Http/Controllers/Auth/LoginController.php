@@ -23,7 +23,7 @@ class LoginController extends Controller
 
     use AuthenticatesUsers {
         login as protected laravelLogin;
-        showLoginForm as protected laravelShowLoginForm;
+        logout as protected laravelLogout;
     }
 
     /**
@@ -45,18 +45,6 @@ class LoginController extends Controller
     }
 
     /**
-     * Display the login form.
-     */
-    public function showLoginForm()
-    {
-        if (session()->has('admin_id')) {
-            return redirect()->route('admin.dashboard');
-        }
-
-        return $this->laravelShowLoginForm();
-    }
-
-    /**
      * Handle a login request for users and admins.
      */
     public function login(Request $request)
@@ -68,9 +56,35 @@ class LoginController extends Controller
             $request->session()->put('admin_id', $admin->id);
             $request->session()->put('admin_name', $admin->name);
 
-            return redirect()->route('admin.dashboard');
+            return redirect()->intended($this->redirectPath());
         }
 
         return $this->laravelLogin($request);
+    }
+
+    /**
+     * Mark authenticated users as admin when their email exists in admins table.
+     */
+    protected function authenticated(Request $request, $user): void
+    {
+        $admin = Admin::where('email', $user->email)->first();
+
+        if ($admin) {
+            $request->session()->put('admin_id', $admin->id);
+            $request->session()->put('admin_name', $admin->name);
+            return;
+        }
+
+        $request->session()->forget(['admin_id', 'admin_name']);
+    }
+
+    /**
+     * Log out and clear any admin session markers.
+     */
+    public function logout(Request $request)
+    {
+        $request->session()->forget(['admin_id', 'admin_name']);
+
+        return $this->laravelLogout($request);
     }
 }
