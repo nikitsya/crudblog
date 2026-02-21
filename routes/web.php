@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,12 @@ Route::get('/blog', [PostController::class, 'index'])->name('blog.index');
 Route::resource('posts', PostController::class);
 Route::post('/posts/{post}/comments', [CommentController::class, 'store'])
     ->name('posts.comments.store');
+
+// Admin routes
+Route::middleware('admin')->group(function () {
+    Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+    Route::post('/admin/logout', [AdminDashboardController::class, 'logout'])->name('admin.logout');
+});
 
 Auth::routes();
 
