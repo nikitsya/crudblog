@@ -1,6 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
+@php
+    $postCount = 0;
+    $userCount = 0;
+
+    try {
+        $postCount = \App\Models\Post::count();
+        $userCount = \App\Models\User::count();
+    } catch (\Throwable $e) {
+        // Fallback when database is unavailable.
+    }
+@endphp
+
 <!-- Hero Section -->
 <div class="home-hero text-white py-5">
     <div class="container py-5">
@@ -143,11 +155,11 @@
     <div class="container py-4">
         <div class="row text-center">
             <div class="col-md-3 mb-4 mb-md-0">
-                <div class="display-4 fw-bold text-primary">{{ \App\Models\Post::count() }}+</div>
+                <div class="display-4 fw-bold text-primary">{{ $postCount }}+</div>
                 <p class="lead mb-0">Blog Posts</p>
             </div>
             <div class="col-md-3 mb-4 mb-md-0">
-                <div class="display-4 fw-bold text-primary">{{ \App\Models\User::count() }}+</div>
+                <div class="display-4 fw-bold text-primary">{{ $userCount }}+</div>
                 <p class="lead mb-0">Active Users</p>
             </div>
             <div class="col-md-3 mb-4 mb-md-0">

@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+@php
+    $postUrl = route('posts.show', $post);
+    $encodedPostUrl = rawurlencode($postUrl);
+    $encodedPostTitle = rawurlencode($post->title . ' | ' . config('app.name', 'Laravel Blog'));
+@endphp
+
 <div class="container py-4">
     <div class="row justify-content-center">
         <div class="col-md-10">
@@ -49,6 +55,42 @@
 
                     <div class="card-text post-content">
                         {!! $post->description !!}
+                    </div>
+
+                    <div class="d-flex flex-wrap align-items-center gap-2 mt-4">
+                        <span class="text-muted small me-1">Share:</span>
+                        <a
+                            href="https://twitter.com/intent/tweet?url={{ $encodedPostUrl }}&text={{ $encodedPostTitle }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="btn btn-sm btn-outline-primary"
+                        >
+                            <i class="bi bi-twitter me-1"></i>X
+                        </a>
+                        <a
+                            href="https://www.facebook.com/sharer/sharer.php?u={{ $encodedPostUrl }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="btn btn-sm btn-outline-primary"
+                        >
+                            <i class="bi bi-facebook me-1"></i>Facebook
+                        </a>
+                        <a
+                            href="https://www.linkedin.com/sharing/share-offsite/?url={{ $encodedPostUrl }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="btn btn-sm btn-outline-primary"
+                        >
+                            <i class="bi bi-linkedin me-1"></i>LinkedIn
+                        </a>
+                        <button
+                            type="button"
+                            class="btn btn-sm btn-outline-secondary js-copy-post-link"
+                            data-url="{{ $postUrl }}"
+                        >
+                            <i class="bi bi-link-45deg me-1"></i>Copy Link
+                        </button>
+                        <span id="copy-link-feedback" class="small text-success d-none">Copied!</span>
                     </div>
 
                     <hr class="my-4">
@@ -101,3 +143,38 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const copyButton = document.querySelector('.js-copy-post-link');
+    const feedback = document.getElementById('copy-link-feedback');
+
+    if (!copyButton) {
+        return;
+    }
+
+    copyButton.addEventListener('click', async function () {
+        const url = copyButton.getAttribute('data-url') || window.location.href;
+
+        try {
+            await navigator.clipboard.writeText(url);
+        } catch (error) {
+            const fallbackInput = document.createElement('input');
+            fallbackInput.value = url;
+            document.body.appendChild(fallbackInput);
+            fallbackInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(fallbackInput);
+        }
+
+        if (feedback) {
+            feedback.classList.remove('d-none');
+            setTimeout(function () {
+                feedback.classList.add('d-none');
+            }, 1600);
+        }
+    });
+});
+</script>
+@endpush
